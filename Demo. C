@@ -1,0 +1,124 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+typedef struct Employee {
+  int id;
+  char name[50];
+  float salary;
+} Employee;
+
+typedef struct Node {
+  Employee employee;
+  struct Node* next;
+  struct Node* prev;
+} Node;
+
+typedef struct Stack {
+  Node* top;
+} Stack;
+
+// Initialize the stack
+void initStack(Stack* stack) {
+  stack->top = NULL;
+}
+
+// Push an employee onto the stack
+void push(Stack* stack, Employee employee) {
+  Node* node = (Node*) malloc(sizeof(Node));
+  node->employee = employee;
+  node->next = stack->top;
+  node->prev = NULL;
+  if (stack->top != NULL) {
+    stack->top->prev = node;
+  }
+  stack->top = node;
+}
+
+// Pop an employee from the stack
+Employee pop(Stack* stack) {
+  if (stack->top == NULL) {
+    printf("Error: stack is empty\n");
+    exit(1);
+  }
+  Node* node = stack->top;
+  Employee employee = node->employee;
+  stack->top = node->next;
+  if (stack->top != NULL) {
+    stack->top->prev = NULL;
+  }
+  free(node);
+  return employee;
+}
+
+// Initialize the doubly linked list
+void initList(Node** head) {
+  *head = NULL;
+}
+
+// Insert an employee at the beginning of the list
+void insertFirst(Node** head, Employee employee) {
+  Node* node = (Node*) malloc(sizeof(Node));
+  node->employee = employee;
+  node->next = *head;
+  node->prev = NULL;
+  if (*head != NULL) {
+    (*head)->prev = node;
+  }
+  *head = node;
+}
+
+// Insert an employee at the end of the list
+void insertLast(Node** head, Employee employee) {
+  Node* node = (Node*) malloc(sizeof(Node));
+  node->employee = employee;
+  node->next = NULL;
+  node->prev = NULL;
+  if (*head == NULL) {
+    *head = node;
+    return;
+  }
+  Node* current = *head;
+  while (current->next != NULL) {
+    current = current->next;
+  }
+  current->next = node;
+  node->prev = current;
+}
+
+// Delete an employee with a given ID from the list
+void deleteById(Node** head, int id) {
+  Node* current = *head;
+  while (current != NULL) {
+    if (current->employee.id == id) {
+      if (current == *head) {
+        *head = current->next;
+        if (*head != NULL) {
+          (*head)->prev = NULL;
+        }
+      } else {
+        current->prev->next = current->next;
+        if (current->next != NULL) {
+          current->next->prev = current->prev;
+        }
+      }
+      free(current);
+      return;
+    }
+    current = current->next;
+  }
+  printf("Error: employee with ID %d not found\n", id);
+  exit(1);
+}
+
+// Print all employees in the list
+void printList(Node* head) {
+  Node* current = head;
+  while (current != NULL) {
+    printf("ID: %d, Name: %s, Salary: %.2f\n", current->employee.id, current->employee.name, current->employee.salary);
+    current = current->next;
+  }
+}
+
+int main() {
+  Stack stack
