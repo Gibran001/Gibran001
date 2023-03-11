@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main()
+{
+    char input1[10], input2[10];
+    int seconds1, seconds2, total_seconds, hours, minutes, seconds;
+
+    printf("Enter the first number (in seconds): ");
+    scanf("%s", input1);
+
+    printf("Enter the second number (in seconds): ");
+    scanf("%s", input2);
+
+    // Convert strings to integers
+    seconds1 = atoi(input1);
+    seconds2 = atoi(input2);
+
+    // Calculate the total number of seconds
+    total_seconds = seconds1 + seconds2;
+
+    // Convert seconds to hours, minutes, and seconds
+    hours = total_seconds / 3600;
+    minutes = (total_seconds % 3600) / 60;
+    seconds = (total_seconds % 3600) % 60;
+
+    // Print the output
+    printf("%s seconds + %s seconds = %d hours %d minutes %d seconds\n", input1, input2, hours, minutes, seconds);
+
+    return 0;
+}
