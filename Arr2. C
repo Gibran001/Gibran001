@@ -1,0 +1,24 @@
+#include <stdio.h>
+
+int main() {
+    int arr[100], n, i, sum = 0, expected_sum;
+
+    printf("Enter the number of elements in the array: ");
+    scanf("%d", &n);
+
+    printf("Enter the elements of the array: ");
+    for (i = 0; i < n - 1; i++) {
+        scanf("%d", &arr[i]);
+        sum += arr[i];
+    }
+
+    // Calculate the expected sum of the elements
+    expected_sum = (n * (n + 1)) / 2;
+
+    // Calculate the missing element
+    int missing = expected_sum - sum;
+
+    printf("The missing element is: %d", missing);
+
+    return 0;
+}
