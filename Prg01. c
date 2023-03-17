@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char input[100];
+    int are_pos = -1, i_pos = -1, sum;
+
+    printf("Enter the input string: ");
+    fgets(input, 100, stdin);
+
+    char *are_ptr = strstr(input, "are");
+    char *i_ptr = strstr(input, " i");
+
+    if (are_ptr != NULL) {
+        are_pos = are_ptr - input;
+    }
+    if (i_ptr != NULL) {
+        i_pos = i_ptr - input + 1;
+    }
+
+    sum = are_pos + i_pos;
+    printf("Positions of 'are' and ' i': %d+%d\n", are_pos, i_pos);
+    printf("Sum: %d\n", sum);
+
+    return 0;
+}
