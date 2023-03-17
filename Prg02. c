@@ -1,0 +1,20 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char input[100];
+    fgets(input, 100, stdin); // read input string
+
+    // find positions of "are" and " i"
+    char *are_pos = strstr(input, "are");
+    char *i_pos = strstr(input, " i");
+
+    // print positions or -1 if not found
+    printf("%d+%d\n", are_pos ? (int)(are_pos - input) : -1, i_pos ? (int)(i_pos - input) : -1);
+
+    // calculate sum of positions
+    int sum = (are_pos ? (int)(are_pos - input) : -1) + (i_pos ? (int)(i_pos - input) : -1);
+    printf("sum = %d\n", sum);
+
+    return 0;
+}
