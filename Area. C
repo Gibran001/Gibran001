@@ -1,0 +1,42 @@
+
+Area calculation in C
+
+
+GIBRAN. H
+Write a c program to find area of circle, square, rectangle and triangle
+
+Sure! Here's a C program that calculates the area of a circle, square, rectangle, and triangle based on user input for the necessary measurements:
+
+c
+Copy code
+#include<stdio.h>
+
+int main()
+{
+    float radius, length, breadth, base, height;
+    float pi = 3.14159;
+    float area_circle, area_square, area_rectangle, area_triangle;
+
+    // area of circle
+    printf("Enter radius of circle: ");
+    scanf("%f", &radius);
+    area_circle = pi * radius * radius;
+    printf("Area of circle is: %.2f\n", area_circle);
+
+    // area of square
+    printf("Enter length of side of square: ");
+    scanf("%f", &length);
+    area_square = length * length;
+    printf("Area of square is: %.2f\n", area_square);
+
+    // area of rectangle
+    printf("Enter length and breadth of rectangle: ");
+    scanf("%f%f", &length, &breadth);
+    area_rectangle = length * breadth;
+    printf("Area of rectangle is: %.2f\n", area_rectangle);
+
+    // area of triangle
+    printf("Enter base and height of triangle: ");
+    scanf("%f%f", &base, &height);
+    area_triangle = 0.5 * base * height;
+    printf("Area of triangle is: %.2f\n", area_triangle);
